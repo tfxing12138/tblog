@@ -23,6 +23,8 @@ public class TokenUtils {
      * @return
      */
     public static String sign(User user){
+
+        validUser(user);
  
         String token=null;
         try {
@@ -40,8 +42,20 @@ public class TokenUtils {
         }
         return token;
     }
- 
- 
+
+    /**
+     * 检验用户名&密码
+     * @param user
+     */
+    private static void validUser(User user) {
+        ValidUtils.validParam(user,"参数异常,无效的用户");
+
+        if(!"link".equals(user.getUserName()) || !"link12".equals(user.getPassWord())) {
+            throw new RuntimeException("登录失败，非法的用户");
+        }
+    }
+
+
     /**
      * token验证
      * @param token
