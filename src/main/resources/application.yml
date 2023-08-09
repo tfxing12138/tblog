@@ -1,0 +1,24 @@
+server:
+  port: 10010
+
+spring:
+  application:
+    name: personDaily
+  datasource:
+    url: jdbc:mysql://119.29.187.18:3306/db_tfx?serverTimezone-UTC
+    username: root
+    password: tfx12138
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#  rabbitmq:
+#    host: 119.29.187.18
+#    port: 15672
+#    username: admin
+#    password: admin
+#    virtual-host: localhost
+mybatis:
+  mapper-locations: com/tfxing/tblog/dao/*.xml
+
+logging:
+  level:
+    springfox: error
+    org.springframework: info
