@@ -3,9 +3,9 @@ server:
 
 spring:
   application:
-    name: personDaily
+    name: tblog
   datasource:
-    url: jdbc:mysql://119.29.187.18:3306/db_tfx?serverTimezone-UTC
+    url: jdbc:mysql://localhost:3306/tblog?serverTimezone-UTC
     username: root
     password: tfx12138
     driver-class-name: com.mysql.cj.jdbc.Driver
