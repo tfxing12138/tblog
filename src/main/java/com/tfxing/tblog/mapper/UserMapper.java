@@ -1,11 +1,14 @@
 package com.tfxing.tblog.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tfxing.tblog.entity.User;
+import org.springframework.stereotype.Repository;
 
-@Mapper
-public class UserMapper {
+import java.util.List;
 
-    public String list() {
-        return "hello";
-    }
+@Repository
+public interface UserMapper extends BaseMapper<User> {
+
+    List<User> list();
+
 }

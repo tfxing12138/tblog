@@ -7,9 +7,11 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.tfxing.tblog.entity.User;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
+@Slf4j
 public class TokenUtils {
  
     //token到期时间10小时
@@ -23,8 +25,6 @@ public class TokenUtils {
      * @return
      */
     public static String sign(User user){
-
-        validUser(user);
  
         String token=null;
         try {
@@ -43,17 +43,7 @@ public class TokenUtils {
         return token;
     }
 
-    /**
-     * 检验用户名&密码
-     * @param user
-     */
-    private static void validUser(User user) {
-        ValidUtils.validParam(user,"参数异常,无效的用户");
 
-        if(!"link".equals(user.getUserName()) || !"link12".equals(user.getPassWord())) {
-            throw new RuntimeException("登录失败，非法的用户");
-        }
-    }
 
 
     /**
@@ -67,9 +57,9 @@ public class TokenUtils {
             //创建token验证器
             JWTVerifier jwtVerifier=JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
             DecodedJWT decodedJWT=jwtVerifier.verify(token);
-            System.out.println("认证通过：");
-            System.out.println("username: " + decodedJWT.getClaim("username").asString());
-            System.out.println("过期时间：      " + decodedJWT.getExpiresAt());
+            log.info("认证通过：");
+            log.info("username: " + decodedJWT.getClaim("username").asString());
+            log.info("过期时间：      " + decodedJWT.getExpiresAt());
         } catch (IllegalArgumentException | JWTVerificationException e) {
             //抛出错误即为验证不通过
             return false;

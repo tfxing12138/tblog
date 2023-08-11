@@ -5,7 +5,7 @@ spring:
   application:
     name: tblog
   datasource:
-    url: jdbc:mysql://localhost:3306/tblog?serverTimezone-UTC
+    url: jdbc:mysql://192.168.3.129:3306/tblog?serverTimezone-UTC
     username: root
     password: tfx12138
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,8 +17,22 @@ spring:
 #    virtual-host: localhost
 mybatis:
   mapper-locations: com/tfxing/tblog/dao/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
 
 logging:
   level:
     springfox: error
     org.springframework: info
+    com.baomidou.mybatisplus.core.executor: debug
+    com.tfxing.tblog.mapper: debug
+
+# ???????,???????????????
+authority:
+  excludePath: >
+    /user/login,
+    /user/register

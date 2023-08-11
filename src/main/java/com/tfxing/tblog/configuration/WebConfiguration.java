@@ -1,6 +1,7 @@
 package com.tfxing.tblog.configuration;
 
 import com.tfxing.tblog.interceptor.TokenInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
@@ -15,6 +16,9 @@ import java.util.concurrent.Executors;
 
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
+
+    @Value("${authority.excludePath}")
+    private List<String> excludePath;
  
     @Resource
     private TokenInterceptor tokenInterceptor;
@@ -50,20 +54,9 @@ public class WebConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        List<String> excludePath = new ArrayList<>();
-        //排除拦截，除了注册登录(此时还没token)，其他都拦截
-        excludePath.add("/user/login");  //登录
-        excludePath.add("/user/register");     //注册
-        excludePath.add("/doc.html");     //swagger
-        excludePath.add("/swagger-ui.html");     //swagger
-        excludePath.add("/swagger-resources/**");     //swagger
-        excludePath.add("/v2/api-docs");     //swagger
-        excludePath.add("/webjars/**");     //swagger
-//        excludePath.add("/static/**");  //静态资源
-//        excludePath.add("/assets/**");  //静态资源
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns(excludePath);
+                .excludePathPatterns(this.excludePath);
         WebMvcConfigurer.super.addInterceptors(registry);
  
     }
