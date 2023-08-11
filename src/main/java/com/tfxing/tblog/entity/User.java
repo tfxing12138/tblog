@@ -20,6 +20,8 @@ public class User {
     @NotBlank(message = "用户密码不能为空")
     private String passWord;
 
+    private String salt;
+
     @TableLogic
     private Integer deleted;
 

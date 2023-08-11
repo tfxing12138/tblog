@@ -9,9 +9,9 @@
 
 ```json
 {
-    "userName": "link", // 用户名
-    "passWord": "Link1234", // 密码
-    "email": "t18370240624@163.com" // 邮箱
+    "userName": "xxxx", // 用户名
+    "passWord": "xxxx", // 密码
+    "email": "t18xxxxxxx24@163.com" // 邮箱
 }
 
 ```

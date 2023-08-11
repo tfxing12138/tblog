@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseInfo<Long> register(@Validated @RequestBody User user) {
+    public ResponseInfo<Long> register(@Validated @RequestBody User user) throws Exception{
         Long id = userService.register(user);
 
         return ResponseInfo.success(id);

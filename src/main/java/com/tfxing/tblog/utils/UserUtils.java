@@ -1,5 +1,9 @@
 package com.tfxing.tblog.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.security.GeneralSecurityException;
+
 public class UserUtils {
 
     // 正则表达式：只允许字母、数字、下划线，且长度在4到20之间
@@ -26,5 +30,35 @@ public class UserUtils {
         if (!email.matches(EMAIL_PATTERN)) {
             throw new RuntimeException("非法的邮箱");
         }
+    }
+
+    /**
+     * 密码加盐加密
+     * @param t
+     * @param <T>
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     * @throws GeneralSecurityException
+     * @throws UnsupportedEncodingException
+     */
+    public static <T> void saltHandle(T t) throws NoSuchFieldException, IllegalAccessException, GeneralSecurityException, UnsupportedEncodingException {
+        Class<?> clazz = t.getClass();
+        Field passWordField = clazz.getDeclaredField("passWord");
+        passWordField.setAccessible(true);
+
+        Object value = passWordField.get(t);
+        if(null == value) {
+            throw new RuntimeException("参数异常，请输入密码");
+        }
+
+        String salt = UuidUtils.generateId();
+
+        String password = AESUtil.encrypt(salt, String.valueOf(value));
+        passWordField.set(t,password);
+
+        Field saltField = clazz.getDeclaredField("salt");
+        saltField.setAccessible(true);
+        saltField.set(t,salt);
+
     }
 }

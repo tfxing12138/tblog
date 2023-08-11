@@ -12,6 +12,8 @@ import com.tfxing.tblog.utils.ValidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long register(User user) {
+    public Long register(User user) throws Exception {
         UserUtils.validUserName(user.getUserName());
 
         UserUtils.validPassWord(user.getPassWord());
@@ -36,6 +38,8 @@ public class UserServiceImpl implements UserService {
         UserUtils.validEmail(user.getEmail());
 
         validUniqueEmail(user.getEmail());
+
+        UserUtils.saltHandle(user);
 
         userMapper.insert(user);
 
@@ -66,8 +70,9 @@ public class UserServiceImpl implements UserService {
 
         User userDb = userMapper.selectOne(new LambdaQueryWrapper<User>()
                 .eq(User::getEmail, user.getEmail())
-                .eq(User::getPassWord, user.getPassWord())
                 .eq(User::getDeleted, NumberConstant.ZERO));
+
+        String salt = userDb.getSalt();
 
         ValidUtils.validParam(userDb, "登录失败");
     }
