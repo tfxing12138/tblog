@@ -12,7 +12,7 @@ public interface UserService {
 
     Long register(User user) throws Exception;
 
-    void validUser(User user);
+    void validUser(User user) throws Exception;
 
     void remove(Long id);
 }

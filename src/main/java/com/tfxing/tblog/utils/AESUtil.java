@@ -1,11 +1,15 @@
 package com.tfxing.tblog.utils;
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
+import java.security.spec.KeySpec;
 import java.util.Base64;
 
 
@@ -58,5 +62,35 @@ public class AESUtil {
         System.arraycopy(bs1, 0, r, 0, bs1.length);
         System.arraycopy(bs2, 0, r, bs1.length, bs2.length);
         return Base64.getEncoder().encodeToString(r);
+    }
+
+    private static final String ALGORITHM = "AES";
+    private static final String PADDING = "AES/ECB/PKCS5Padding"; // Using ECB for simplicity, not recommended for strong security
+    private static final int KEY_LENGTH = 128;
+
+    public static String encrypt1(String key, String content) throws Exception {
+        SecretKeySpec secretKeySpec = generateSecretKey(key);
+        Cipher cipher = Cipher.getInstance(PADDING);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+
+        byte[] encryptedBytes = cipher.doFinal(content.getBytes());
+        return Base64.getEncoder().encodeToString(encryptedBytes);
+    }
+
+    public static String decrypt1(String key, String encryptedContent) throws Exception {
+        SecretKeySpec secretKeySpec = generateSecretKey(key);
+        Cipher cipher = Cipher.getInstance(PADDING);
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+
+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedContent));
+        return new String(decryptedBytes);
+    }
+
+    private static SecretKeySpec generateSecretKey(String key) throws Exception {
+        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        KeySpec spec = new PBEKeySpec(key.toCharArray(), key.getBytes(), 65536, KEY_LENGTH);
+        SecretKey secretKey = factory.generateSecret(spec);
+
+        return new SecretKeySpec(secretKey.getEncoded(), ALGORITHM);
     }
 }

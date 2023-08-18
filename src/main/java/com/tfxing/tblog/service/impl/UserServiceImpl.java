@@ -7,6 +7,7 @@ import com.tfxing.tblog.entity.User;
 import com.tfxing.tblog.entity.constant.NumberConstant;
 import com.tfxing.tblog.mapper.UserMapper;
 import com.tfxing.tblog.service.UserService;
+import com.tfxing.tblog.utils.AESUtil;
 import com.tfxing.tblog.utils.UserUtils;
 import com.tfxing.tblog.utils.ValidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,16 +66,20 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    public void validUser(User user) {
+    public void validUser(User user) throws Exception {
         ValidUtils.validParam(user,"参数异常,无效的用户");
 
         User userDb = userMapper.selectOne(new LambdaQueryWrapper<User>()
                 .eq(User::getEmail, user.getEmail())
                 .eq(User::getDeleted, NumberConstant.ZERO));
 
-        String salt = userDb.getSalt();
-
         ValidUtils.validParam(userDb, "登录失败");
+
+        String decrypt = AESUtil.decrypt(userDb.getSalt(), userDb.getPassWord());
+
+        if(!decrypt.equals(user.getPassWord())) {
+            throw new RuntimeException("密码错误");
+        }
     }
 
     /**

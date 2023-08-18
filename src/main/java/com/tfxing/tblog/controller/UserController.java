@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/login")
-    public ResponseInfo login(@RequestParam(value = "email") String email, @RequestParam(value = "passWord") String passWord) {
+    public ResponseInfo login(@RequestParam(value = "email") String email, @RequestParam(value = "passWord") String passWord) throws Exception {
         //包装token
         User user = new User(null,email,passWord);
         userService.validUser(user);

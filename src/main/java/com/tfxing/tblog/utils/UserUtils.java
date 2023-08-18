@@ -41,7 +41,7 @@ public class UserUtils {
      * @throws GeneralSecurityException
      * @throws UnsupportedEncodingException
      */
-    public static <T> void saltHandle(T t) throws NoSuchFieldException, IllegalAccessException, GeneralSecurityException, UnsupportedEncodingException {
+    public static <T> void saltHandle(T t) throws Exception {
         Class<?> clazz = t.getClass();
         Field passWordField = clazz.getDeclaredField("passWord");
         passWordField.setAccessible(true);
