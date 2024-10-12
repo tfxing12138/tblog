@@ -3,12 +3,14 @@ package com.tfxing.tblog.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.tfxing.tblog.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -23,6 +25,9 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
+
+        log.info("Request URI: {}", request.getRequestURI());
+
         response.setCharacterEncoding("utf-8");
         String token = request.getHeader("token");
         if (token != null){
@@ -38,7 +43,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             json.put("msg","token verify fail");
             json.put("code","500");
             response.getWriter().append(json.toString());
-            log.error("认证失败，未通过拦截器");
+                log.error("认证失败，未通过拦截器");
         } catch (Exception e) {
             return false;
         }

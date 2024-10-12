@@ -31,8 +31,12 @@ logging:
     com.baomidou.mybatisplus.core.executor: debug
     com.tfxing.tblog.mapper: debug
 
-# ???????,???????????????
+# token验证，排除的接口
 authority:
   excludePath: >
+    /error,
     /user/login,
-    /user/register
+    /user/register,
+    /article/save,
+    /article/page,
+    /article/getById
