@@ -5,9 +5,9 @@ spring:
   application:
     name: tblog
   datasource:
-    url: jdbc:mysql://192.168.3.129:3306/tblog?serverTimezone-UTC
+    url: jdbc:mysql://106.52.4.171:3306/tblog?serverTimezone-UTC
     username: root
-    password: tfx12138
+    password: @Link123
     driver-class-name: com.mysql.cj.jdbc.Driver
 #  rabbitmq:
 #    host: 119.29.187.18
