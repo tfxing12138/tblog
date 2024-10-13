@@ -3,6 +3,7 @@ package com.tfxing.tblog.interceptor;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.tfxing.tblog.utils.MyClassUtils;
 import com.tfxing.tblog.utils.SnowflakeIdGeneratorUtil;
+import com.tfxing.tblog.utils.UuidUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.MapperMethod.ParamMap;
 import org.apache.ibatis.executor.Executor;
@@ -78,7 +79,7 @@ public class MybatisInterceptor implements Interceptor {
                         field.setAccessible(false);
                         if (local_createBy == null) {
                             field.setAccessible(true);
-                            field.set(parameter, SnowflakeIdGeneratorUtil.getId());
+                            field.set(parameter, UuidUtils.generateId());
                             field.setAccessible(false);
                         }
                     }
