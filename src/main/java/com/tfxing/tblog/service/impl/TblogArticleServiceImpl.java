@@ -23,7 +23,8 @@ public class TblogArticleServiceImpl implements TblogArticleService {
     @Override
     public IPage<TblogArticle> pageArticle(TblogArticlePageDto dto) {
         Page<TblogArticle> page = new Page<TblogArticle>(dto.getCurrentPage(),dto.getPageSize());
-        return tblogArticleDao.selectPage(page,null);
+        Page<TblogArticle> pageInfo = tblogArticleDao.selectPage(page, null);
+        return pageInfo;
     }
 
     @Override
