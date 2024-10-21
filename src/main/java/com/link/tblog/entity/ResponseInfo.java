@@ -4,7 +4,7 @@ import com.link.tblog.entity.enums.StatusCodeEnum;
 import lombok.Data;
 
 /**
- * @author :tanfuxing
+ * @author :link
  * @date :2023/1/31
  * @description :
  */
