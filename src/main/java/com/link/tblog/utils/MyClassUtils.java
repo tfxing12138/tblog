@@ -1,4 +1,4 @@
-package com.tfxing.tblog.utils;
+package com.link.tblog.utils;
 
 
 import java.lang.reflect.Field;

@@ -10,7 +10,7 @@
     </parent>
 
     <packaging>jar</packaging>
-    <groupId>com.tfxing</groupId>
+    <groupId>com.link</groupId>
     <artifactId>tblog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tblog</name>

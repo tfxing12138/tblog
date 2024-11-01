@@ -1,4 +1,4 @@
-package com.tfxing.tblog.entity;
+package com.link.tblog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

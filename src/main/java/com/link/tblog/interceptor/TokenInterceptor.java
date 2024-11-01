@@ -1,7 +1,7 @@
-package com.tfxing.tblog.interceptor;
+package com.link.tblog.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tfxing.tblog.utils.TokenUtils;
+import com.link.tblog.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

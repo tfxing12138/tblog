@@ -1,4 +1,4 @@
-package com.tfxing.tblog.utils;
+package com.link.tblog.utils;
 
 public class SnowflakeIdGeneratorUtil {
     // 使用单例模式，确保只创建一个 SnowflakeIdGenerator 实例

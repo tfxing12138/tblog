@@ -16,7 +16,7 @@ spring:
 #    password: admin
 #    virtual-host: localhost
 mybatis:
-  mapper-locations: com/tfxing/tblog/dao/*.xml
+  mapper-locations: com/link/tblog/dao/*.xml
   global-config:
     db-config:
       logic-delete-field: deleted
@@ -29,7 +29,7 @@ logging:
     springfox: error
     org.springframework: info
     com.baomidou.mybatisplus.core.executor: debug
-    com.tfxing.tblog.mapper: debug
+    com.link.tblog.mapper: debug
 
 # token验证，排除的接口
 authority:

@@ -1,9 +1,9 @@
-package com.tfxing.tblog.interceptor;
+package com.link.tblog.interceptor;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.tfxing.tblog.utils.MyClassUtils;
-import com.tfxing.tblog.utils.SnowflakeIdGeneratorUtil;
-import com.tfxing.tblog.utils.UuidUtils;
+import com.link.tblog.utils.MyClassUtils;
+import com.link.tblog.utils.SnowflakeIdGeneratorUtil;
+import com.link.tblog.utils.UuidUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.binding.MapperMethod.ParamMap;
 import org.apache.ibatis.executor.Executor;

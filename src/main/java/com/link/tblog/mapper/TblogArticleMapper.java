@@ -1,7 +1,7 @@
-package com.tfxing.tblog.mapper;
+package com.link.tblog.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tfxing.tblog.entity.TblogArticle;
+import com.link.tblog.entity.TblogArticle;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

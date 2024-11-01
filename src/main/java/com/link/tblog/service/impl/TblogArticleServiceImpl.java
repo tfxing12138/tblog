@@ -1,11 +1,11 @@
-package com.tfxing.tblog.service.impl;
+package com.link.tblog.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tfxing.tblog.entity.TblogArticle;
-import com.tfxing.tblog.entity.dto.TblogArticlePageDto;
-import com.tfxing.tblog.mapper.TblogArticleMapper;
-import com.tfxing.tblog.service.TblogArticleService;
+import com.link.tblog.entity.TblogArticle;
+import com.link.tblog.entity.dto.TblogArticlePageDto;
+import com.link.tblog.mapper.TblogArticleMapper;
+import com.link.tblog.service.TblogArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

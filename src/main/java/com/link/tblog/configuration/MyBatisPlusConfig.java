@@ -1,4 +1,4 @@
-package com.tfxing.tblog.configuration;
+package com.link.tblog.configuration;
 
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;

@@ -1,9 +1,9 @@
-package com.tfxing.tblog.controller;
+package com.link.tblog.controller;
 
-import com.tfxing.tblog.entity.ResponseInfo;
-import com.tfxing.tblog.entity.TblogArticle;
-import com.tfxing.tblog.entity.dto.TblogArticlePageDto;
-import com.tfxing.tblog.service.TblogArticleService;
+import com.link.tblog.entity.ResponseInfo;
+import com.link.tblog.entity.TblogArticle;
+import com.link.tblog.entity.dto.TblogArticlePageDto;
+import com.link.tblog.service.TblogArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

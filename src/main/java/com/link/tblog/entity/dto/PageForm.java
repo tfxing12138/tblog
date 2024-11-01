@@ -1,4 +1,4 @@
-package com.tfxing.tblog.entity.dto;
+package com.link.tblog.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

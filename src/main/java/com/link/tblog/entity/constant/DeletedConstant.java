@@ -1,4 +1,4 @@
-package com.tfxing.tblog.entity.constant;
+package com.link.tblog.entity.constant;
 
 public interface DeletedConstant {
 
